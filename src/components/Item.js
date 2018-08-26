@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, Switch } from 'react-native'
 
 const Item = ({ item }) => (
   <View style={styles.container}>
-    <Text key={item.id}> {item.title} </Text>
+    <Text> {item.title} </Text>
     <Switch value={item.finished} />
   </View>
 )

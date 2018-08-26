@@ -14,7 +14,7 @@ class LibraryList extends Component {
     console.log('dispatch is ', dispatch)
     console.log('Props in fn are ', this.props.libraries)
     return this.props.libraries.map(item => {
-      return <Item item={item} />
+      return <Item key={item.id} item={item} />
     })
   }
   render() {
