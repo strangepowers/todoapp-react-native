@@ -1,8 +1,9 @@
 import { connect } from 'react-redux'
 import { dispatch } from 'redux'
 import React, { Component } from 'react'
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, Switch } from 'react-native'
 import { Button } from './common/Button'
+import Item from './Item'
 
 function myDispatch(dispatch) {
   return { type: 'changeCandy', payload: 99 }
@@ -13,7 +14,7 @@ class LibraryList extends Component {
     console.log('dispatch is ', dispatch)
     console.log('Props in fn are ', this.props.libraries)
     return this.props.libraries.map(item => {
-      return <Text key={item.id}> {item.title} </Text>
+      return <Item item={item} />
     })
   }
   render() {
