@@ -26,7 +26,6 @@ function LibReducer(state = INITIAL_STATE, action) {
     }
   }
   if (action.type === 'addNewItem') {
-    action.payload
     return {
       ...state,
       libraries: [].concat(state.libraries, {
