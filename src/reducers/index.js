@@ -5,20 +5,13 @@ import data from './LibraryList.json'
 const INITIAL_STATE = {
   libraries: data,
   candy: 101
-};
+}
 
 function LibReducer(state = INITIAL_STATE, action) {
-  console.log("the action is ", action)
-  if(action == 'changeCandy') {
+  console.log('the action is ', action)
+  if (action.type == 'changeCandy') {
     //return { ...state, candy: 432}
-    return {libraries: [{"id": 0,
-                        "title": "Fun React",
-                        "finished": true
-                      }, {
-                        "id": 1,
-                        "title": "Go to sleep",
-                        "finished": false
-                      }], candy: 432}
+    return { ...state, candy: 432 }
   } else {
     return state
   }
