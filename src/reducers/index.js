@@ -20,10 +20,20 @@ function LibReducer(state = INITIAL_STATE, action) {
     return { ...state, candy: 432 }
   }
   if (action.type === 'changedFinishedValue') {
-    console.log('hitting this action')
     return {
       ...state,
       libraries: state.libraries.map(item => reduceItem(item, action.payload))
+    }
+  }
+  if (action.type === 'addNewItem') {
+    action.payload
+    return {
+      ...state,
+      libraries: [].concat(state.libraries, {
+        id: 4,
+        title: action.payload,
+        finished: false
+      })
     }
   } else {
     return state
