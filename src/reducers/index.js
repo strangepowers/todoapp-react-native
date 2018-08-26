@@ -4,7 +4,8 @@ import data from './LibraryList.json'
 
 const INITIAL_STATE = {
   libraries: data,
-  candy: 101
+  candy: 101,
+  nextItemId: 4
 }
 
 function reduceItem(item, payload) {
@@ -26,10 +27,13 @@ function LibReducer(state = INITIAL_STATE, action) {
     }
   }
   if (action.type === 'addNewItem') {
+    let newItemId = state.nextItemId
+    let nextItemId = state.nextItemId + 1
     return {
       ...state,
+      nextItemId: nextItemId,
       libraries: [].concat(state.libraries, {
-        id: 4,
+        id: newItemId,
         title: action.payload,
         finished: false
       })
