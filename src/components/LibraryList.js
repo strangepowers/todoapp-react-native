@@ -10,6 +10,9 @@ function myDispatch(dispatch) {
 }
 
 class LibraryList extends Component {
+  state = {
+    text: 'My new Item :)'
+  }
   renderItems() {
     console.log('Props in fn are ', this.props.libraries)
     return this.props.libraries.map(item => {
@@ -22,10 +25,13 @@ class LibraryList extends Component {
       <View>
         {this.renderItems()}
         <Text> {this.props.candy} </Text>
-        <TextInput value={"new item"} style={{height: 40, borderColor: 'gray', borderWidth: 1}} />
-        <Button onPress={() => this.props.myDispatch()}>
-          <Text> OK </Text>
-          <Text> Press Me </Text>
+        <TextInput
+          onChangeText={text => this.setState({ text })}
+          value={this.state.text}
+          style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+        />
+        <Button onPress={() => this.props.findle(this.state.text)}>
+          <Text> Add new Item </Text>
         </Button>
       </View>
     )
@@ -33,15 +39,16 @@ class LibraryList extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log('state is ', state)
-  console.log('in mapState to Props')
   return { libraries: state.libraries.libraries, candy: state.libraries.candy }
 }
 
-const changeCandy = payload => ({
-  type: 'changedFinishedValue',
-  payload
-})
+const changeCandy = newValue => {
+  console.log('new item is ', newValue)
+  return {
+    type: 'addNewItem',
+    newValue
+  }
+}
 
 const mapDispatchToProps = dispatch => ({
   findle: payload => dispatch(changeCandy(payload)),
