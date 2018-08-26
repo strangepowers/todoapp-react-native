@@ -44,7 +44,7 @@ const changeCandy = newValue => {
   console.log('new item is ', newValue)
   return {
     type: 'addNewItem',
-    newValue
+    payload: newValue
   }
 }
 
