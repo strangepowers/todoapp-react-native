@@ -18,7 +18,6 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const Item = (props) => {
-  console.log("props in Item are ", props)
   return (
     <View style={styles.container}>
       <Text> {props.item.title} </Text>
@@ -31,10 +30,7 @@ const mapStateToProps = state => {
   return {}
 }
 
-// function myDispatch(dispatch) {
-//   console.log('in mydispatch')
-//   return { type: 'finishedTask', payload: 99 }
-// }
+
 
 export default connect(
   mapStateToProps,

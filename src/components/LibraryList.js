@@ -14,13 +14,11 @@ class LibraryList extends Component {
     text: 'My new Item :)'
   }
   renderItems() {
-    console.log('Props in fn are ', this.props.libraries)
     return this.props.libraries.map(item => {
       return <Item key={item.id} item={item} />
     })
   }
   render() {
-    console.log('props are ', this.props)
     return (
       <View>
         {this.renderItems()}
