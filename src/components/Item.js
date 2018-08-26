@@ -1,16 +1,29 @@
 /* @flow weak */
 
 import React from 'react'
+import { connect } from 'react-redux'
 import { View, Text, StyleSheet, Switch } from 'react-native'
 
-const Item = ({ item }) => (
+const Item = ({ item, myDispatch }) => (
   <View style={styles.container}>
     <Text> {item.title} </Text>
-    <Switch value={item.finished} />
+    <Switch onValueChange={x => myDispatch()} value={item.finished} />
   </View>
 )
 
-export default Item
+const mapStateToProps = state => {
+  return {}
+}
+
+function myDispatch(dispatch) {
+  console.log('in mydispatch')
+  return { type: 'finishedTask', payload: 99 }
+}
+
+export default connect(
+  mapStateToProps,
+  { myDispatch: myDispatch }
+)(Item)
 
 const styles = StyleSheet.create({
   container: {
