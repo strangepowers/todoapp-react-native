@@ -4,12 +4,31 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { View, Text, StyleSheet, Switch } from 'react-native'
 
-const Item = ({ item, myDispatch }) => (
-  <View style={styles.container}>
-    <Text> {item.title} </Text>
-    <Switch onValueChange={x => myDispatch()} value={item.finished} />
-  </View>
-)
+const changeCandy = payload => ({
+  type: 'changedFinishedValue',
+  payload
+})
+
+//  function myDispatch(dispatch) {
+//    changeCandy: return { type: "changeCandy", payload: 99}
+// }
+
+const mapDispatchToProps = dispatch => ({
+  findle: payload => dispatch(changeCandy(payload))
+})
+
+const Item = props => {
+  console.log('props in Item are ', props)
+  return (
+    <View style={styles.container}>
+      <Text> {props.item.title} </Text>
+      <Switch
+        onValueChange={x => props.findle({ id: props.item.id, finished: x })}
+        value={props.item.finished}
+      />
+    </View>
+  )
+}
 
 const mapStateToProps = state => {
   return {}
@@ -22,7 +41,7 @@ function myDispatch(dispatch) {
 
 export default connect(
   mapStateToProps,
-  { myDispatch: myDispatch }
+  mapDispatchToProps
 )(Item)
 
 const styles = StyleSheet.create({
