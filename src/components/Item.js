@@ -3,6 +3,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { View, Text, StyleSheet, Switch } from 'react-native'
+import { CardSection } from './common/CardSection'
+import { Button } from './common/Button'
 
 const changeCandy = payload => ({
   type: 'changedFinishedValue',
@@ -17,20 +19,27 @@ const mapDispatchToProps = dispatch => ({
   findle: payload => dispatch(changeCandy(payload))
 })
 
-const Item = (props) => {
+const Item = props => {
   return (
-    <View style={styles.container}>
+    <CardSection>
       <Text> {props.item.title} </Text>
-      <Switch onValueChange={x => props.findle({id: props.item.id, finished: x})} value={props.item.finished} />
-    </View>
+      <View style={styles.view}>
+        <Switch
+          style={{ marginRight: 10 }}
+          onValueChange={x => props.findle({ id: props.item.id, finished: x })}
+          value={props.item.finished}
+        />
+        <Button>
+          <Text> Remove Item </Text>
+        </Button>
+      </View>
+    </CardSection>
   )
 }
 
 const mapStateToProps = state => {
   return {}
 }
-
-
 
 export default connect(
   mapStateToProps,
@@ -43,5 +52,10 @@ const styles = StyleSheet.create({
     height: 60,
     padding: 20,
     justifyContent: 'space-between'
+  },
+  view: {
+    flexDirection: 'row',
+    //flex: 1,
+    justifyContent: 'flex-end'
   }
 })
