@@ -15,7 +15,7 @@ class LibraryList extends Component {
   }
   renderItems() {
     return this.props.libraries.map(item => {
-      return <Item key={item.id} item={item} />
+      return <Item key={item.id} editing={this.props.editing} item={item} />
     })
   }
   render() {
@@ -37,7 +37,11 @@ class LibraryList extends Component {
 }
 
 const mapStateToProps = state => {
-  return { libraries: state.libraries.libraries, candy: state.libraries.candy }
+  return {
+    libraries: state.libraries.libraries,
+    candy: state.libraries.candy,
+    editing: state.editing
+  }
 }
 
 const changeCandy = newValue => {

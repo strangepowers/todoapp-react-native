@@ -35,9 +35,11 @@ const Item = props => {
           onValueChange={x => props.findle({ id: props.item.id, finished: x })}
           value={props.item.finished}
         />
-        <Button onPress={() => props.removeItem(props.item.id)}>
-          <Text> Remove Item </Text>
-        </Button>
+        { props.editing &&
+            <Button onPress={() => props.removeItem(props.item.id)}>
+              <Text> Remove Item </Text>
+            </Button>
+        }
       </View>
     </CardSection>
   )

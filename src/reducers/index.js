@@ -5,7 +5,7 @@ import data from './LibraryList.json'
 const INITIAL_STATE = {
   libraries: data,
   candy: 101,
-  nextItemId: 4
+  nextItemId: 4,
 }
 
 function reduceItem(item, payload) {
@@ -43,9 +43,19 @@ function LibReducer(state = INITIAL_STATE, action) {
   }
 }
 
+function reduceEditing(state = true, action){
+  console.log('the action in reduceEditing is ', action)
+  if (action.type == 'editList') {
+    return !state
+  } else {
+    return state
+  }
+}
+
 export default combineReducers({
   libraries: LibReducer,
-  candy: () => 42
+  candy: () => 42,
+  editing: reduceEditing
 })
 
 // console.log(store.getState())
