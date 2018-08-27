@@ -30,16 +30,20 @@ const Item = props => {
     <CardSection>
       <Text> {props.item.title} </Text>
       <View style={styles.view}>
-        <Switch
-          style={{ marginRight: 10 }}
-          onValueChange={x => props.findle({ id: props.item.id, finished: x })}
-          value={props.item.finished}
-        />
-        { props.editing &&
-            <Button onPress={() => props.removeItem(props.item.id)}>
-              <Text> Remove Item </Text>
-            </Button>
-        }
+        {!props.editing && (
+          <Switch
+            style={{ marginRight: 10 }}
+            onValueChange={x =>
+              props.findle({ id: props.item.id, finished: x })
+            }
+            value={props.item.finished}
+          />
+        )}
+        {props.editing && (
+          <Button onPress={() => props.removeItem(props.item.id)}>
+            <Text> Remove Item </Text>
+          </Button>
+        )}
       </View>
     </CardSection>
   )
