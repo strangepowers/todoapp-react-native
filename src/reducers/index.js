@@ -16,6 +16,13 @@ function reduceItem(item, payload) {
 function LibReducer(state = INITIAL_STATE, action) {
   console.log('the action is ', action)
   car = action
+  if (action.type == 'removeItem') {
+    // action.payload should be the id of the item in this case
+    return {
+      ...state,
+      libraries: state.libraries.filter(item => item.id != action.payload)
+    }
+  }
   if (action.type == 'changeCandy') {
     //return { ...state, candy: 432}
     return { ...state, candy: 432 }
