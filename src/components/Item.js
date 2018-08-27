@@ -11,12 +11,18 @@ const changeCandy = payload => ({
   payload
 })
 
+const removeItem = payload => ({
+  type: 'removeItem',
+  payload
+})
+
 //  function myDispatch(dispatch) {
 //    changeCandy: return { type: "changeCandy", payload: 99}
 // }
 
 const mapDispatchToProps = dispatch => ({
-  findle: payload => dispatch(changeCandy(payload))
+  findle: payload => dispatch(changeCandy(payload)),
+  removeItem: payload => dispatch(removeItem(payload))
 })
 
 const Item = props => {
@@ -29,7 +35,7 @@ const Item = props => {
           onValueChange={x => props.findle({ id: props.item.id, finished: x })}
           value={props.item.finished}
         />
-        <Button>
+        <Button onPress={() => props.removeItem(props.item.id)}>
           <Text> Remove Item </Text>
         </Button>
       </View>
