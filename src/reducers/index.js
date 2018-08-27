@@ -5,7 +5,7 @@ import data from './LibraryList.json'
 const INITIAL_STATE = {
   libraries: data,
   candy: 101,
-  nextItemId: 4,
+  nextItemId: 4
 }
 
 function reduceItem(item, payload) {
@@ -43,7 +43,7 @@ function LibReducer(state = INITIAL_STATE, action) {
   }
 }
 
-function reduceEditing(state = true, action){
+function reduceEditing(state = false, action) {
   console.log('the action in reduceEditing is ', action)
   if (action.type == 'editList') {
     return !state

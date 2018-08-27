@@ -31,6 +31,9 @@ class LibraryList extends Component {
         <Button onPress={() => this.props.findle(this.state.text)}>
           <Text> Add new Item </Text>
         </Button>
+        <Button onPress={() => this.props.editList()}>
+          <Text> Edit List </Text>
+        </Button>
       </View>
     )
   }
@@ -52,9 +55,17 @@ const changeCandy = newValue => {
   }
 }
 
+const editList = payload => {
+  return {
+    type: 'editList',
+    payload
+  }
+}
+
 const mapDispatchToProps = dispatch => ({
   findle: payload => dispatch(changeCandy(payload)),
-  myDispatch: payload => dispatch(myDispatch())
+  myDispatch: payload => dispatch(myDispatch()),
+  editList: payload => dispatch(editList())
 })
 
 export default connect(
